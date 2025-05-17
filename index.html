@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Ericka</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff0f5;
+      color: #333;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+      position: relative;
+      overflow-x: hidden;
+    }
+    h1, h2 {
+      color: #c71585;
+      text-align: center;
+    }
+    .question {
+      display: none;
+      animation: fadeInUp 0.6s ease-out;
+    }
+    .question.active {
+      display: block;
+    }
+    .answers button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #ffe4e1;
+      border: 1px solid #c71585;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .answers button:hover {
+      background-color: #fddde6;
+      transform: scale(1.05);
+    }
+    .answers button.clicked {
+      animation: bounce 0.5s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    #sorpresaFinal {
+      display: none;
+      text-align: center;
+      margin-top: 30px;
+      background-color: #ffe4f2;
+      padding: 20px;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      animation: fadeIn 1s ease-in-out;
+      position: relative;
+    }
+    #verSorpresaBtn {
+      display: none;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #c71585;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #verSorpresaBtn:hover {
+      background-color: #a0136b;
+    }
+    .heart, .firework {
+      position: absolute;
+      animation: rise 2s ease-out forwards;
+      pointer-events: none;
+    }
+    .heart {
+      color: red;
+      font-size: 24px;
+    }
+    .firework {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: yellow;
+    }
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💌 Mi Ericka</h1>
+  <p>Mi amor,<br><br>
+    Hoy no quise escribirte una carta cualquiera… Te preparé un pequeño viaje de 6 preguntas. No hay respuestas correctas ni incorrectas, porque todas llevan al mismo lugar: <strong>tú</strong> ❤️</p>
+
+  <div id="questions-container">
+    <div class="question active">
+      <h2>¿Cuándo me enamoré de ti?</h2>
+      <div class="answers">
+        <button onclick="nextQuestion(this)">Con nuestro primer beso</button>
+        <button onclick="nextQuestion(this)">Nuestra primera cita</button>
+        <button onclick="nextQuestion(this)">Nuestra primer escapada</button>
+        <button onclick="nextQuestion(this)">Desde que te vi</button>
+      </div>
+    </div>
+    <div class="question">
+      <h2>¿Qué es lo que más me gusta de ti?</h2>
+      <div class="answers">
+        <button onclick="nextQuestion(this)">Tu sonrisa</button>
+        <button onclick="nextQuestion(this)">Tu ternura</button>
+        <button onclick="nextQuestion(this)">Tu inteligencia</button>
+        <button onclick="nextQuestion(this)">Todo</button>
+      </div>
+    </div>
+    <div class="question">
+      <h2>¿Qué siento cuando estoy contigo?</h2>
+      <div class="answers">
+        <button onclick="nextQuestion(this)">Felicidad total</button>
+        <button onclick="nextQuestion(this)">Mariposas</button>
+        <button onclick="nextQuestion(this)">Paz y emoción</button>
+        <button onclick="nextQuestion(this)">Todo eso y más</button>
+      </div>
+    </div>
+    <div class="question">
+      <h2>¿Qué me imagino contigo?</h2>
+      <div class="answers">
+        <button onclick="nextQuestion(this)">Un viaje juntos</button>
+        <button onclick="nextQuestion(this)">Una vida entera</button>
+        <button onclick="nextQuestion(this)">Despertar a tu lado</button>
+        <button onclick="nextQuestion(this)">Un futuro lleno de amor</button>
+      </div>
+    </div>
+    <div class="question">
+      <h2>¿Me amas?</h2>
+      <div class="answers">
+        <button onclick="nextQuestion(this, true)">Sí</button>
+        <button id="noBtn" onmouseover="mueveBoton(this)">No</button>
+      </div>
+    </div>
+    <div class="question">
+      <h2>Sabía que sí me amas mucho mucho ❤️</h2>
+      <div class="answers">
+        <button onclick="nextQuestion(this)">Siguiente</button>
+      </div>
+    </div>
+  </div>
+
+  <button id="verSorpresaBtn" onclick="mostrarSorpresa()">Una última sorpresa 💖</button>
+
+  <div id="sorpresaFinal">
+    <h2>🎉 ¡Sorpresa! 🎉</h2>
+    <p>Mi Ericka hermosa,<br><br>
+    Hoy celebramos algo muy especial: ¡5 meses desde que comenzó nuestra historia como novios! ❤️ Un 4 de octubre de 2024 tuvimos nuestra primera cita, el día que todo cambió. Aunque también fue el día en que mi mamá partió del país, la vida me mostró que incluso en medio de despedidas, pueden llegar los comienzos más bonitos.<br><br>
+    Desde el 22 de diciembre, cuando oficialmente comenzamos esta aventura, cada mes a tu lado ha sido una historia de amor distinta, especial y maravillosa. Gracias por regalarme tu risa, tu ternura, tu compañía, y un amor que me llena el corazón cada día.<br><br>
+    Gracias por estos 5 meses llenos de magia, y por ser tú: mi lugar seguro, mi amor más bonito, mi todo.<br><br>
+    Esto apenas comienza, y te prometo que será una historia sin final feliz... porque será feliz para siempre.<br><br>
+    Te amo con todo lo que soy. Siempre tuyo,<br><strong>Carlos Sánchez</strong></p>
+  </div>
+
+  <script>
+    const questions = document.querySelectorAll('.question');
+    let currentQuestion = 0;
+
+    function nextQuestion(button, force = false) {
+      if (button) {
+        button.classList.add('clicked');
+        setTimeout(() => button.classList.remove('clicked'), 500);
+      }
+      if (!force && currentQuestion === 4) return;
+
+      questions[currentQuestion].classList.remove('active');
+      currentQuestion++;
+      if (questions[currentQuestion]) {
+        questions[currentQuestion].classList.add('active');
+      } else {
+        document.getElementById('verSorpresaBtn').style.display = 'block';
+      }
+    }
+
+    function mueveBoton(btn) {
+      btn.style.position = 'absolute';
+      btn.style.top = Math.random() * 200 + 'px';
+      btn.style.left = Math.random() * 200 + 'px';
+    }
+
+    function mostrarSorpresa() {
+      document.getElementById('sorpresaFinal').style.display = 'block';
+      lanzarCorazonesYFuegos();
+    }
+
+    function lanzarCorazonesYFuegos() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerText = '❤️';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = Math.random() * 200 + 100 + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.left = Math.random() * window.innerWidth + 'px';
+        firework.style.top = Math.random() * 300 + 50 + 'px';
+        firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
+        document.body.appendChild(firework);
+        setTimeout(() => firework.remove(), 2000);
+      }
+    }
+  </script>
+
+</body>
+</html>
